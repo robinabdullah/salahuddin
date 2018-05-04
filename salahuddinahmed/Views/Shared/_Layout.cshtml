@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<link href="~/Content/styles.css" rel="stylesheet" />*@
+</head>
+<body>
+    <header class="header">
+        <div class="row">
+            <!--//to-bar-->
+            <div class="header-main container" style="text-align:center; margin-top: 0px; padding-top: 0px; padding-bottom: 0px;height:140px;">
+                <div style="width: 100px; float: left;margin-left:50px">
+                    <a href="/default.aspx">
+                        <img id="Img1" src="~/images/logo.png" style="padding-left:30px" height="120px" alt="Logo" onclick="return Img1_onclick()">
+                    </a>
+                </div>
+                <h1 class="logo col-md-8 col-sm-4" style="color:green;padding-top: 35px;text-transform: uppercase;font-weight:normal; font-size:26px">
+                   
+                        <span id="lblSchoolName" font-weight="Bold" style="font-family:Algerian;font-size:38px;">Salahuddin Ahmed High School</span>
+
+                </h1>
+                <a href="/Default.aspx">
+                    <!--//logo-->
+                </a>
+                <div style="float: right; padding-top: 20px; padding-right:0px;">
+                    <a href="/Default.aspx">
+                    </a>
+                    <!--//menu-top-->
+                    <!--//contact-->
+
+                </div>
+                <!--//info-->
+            </div>
+            <!--//header-main-->
+        </div>
+    </header>
+    <div class="navbar navbar-inverse" role="navigation" style="margin-left: 100px;margin-right: 100px;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">About Us <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Message from Chairman</a></li>
+                            <li><a href="#">Message from Principal</a></li>
+                            <li><a href="#">Governing Body</a></li>
+                            <li role="separator" class="divider"></li>
+                            @*<li class="dropdown-header">Nav header</li>*@
+                            <li><a href="#">Mission & Vision</a></li>
+                            <li><a href="#">History</a></li>
+                            <li><a href="#">Achivements</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Academic <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="/PublicSite/English/CodeOfConductsWebForm.aspx?TopMenu=Academic&amp;SubMenu=Code of Conduct">Code of Conducts</a></li>
+                            <li><a href="/PublicSite/English/GuidelineForParentsWebForm.aspx?TopMenu=Academic&amp;SubMenu=Guideline for Parents">Guideline for Parents</a></li>
+                            <li><a href="/PublicSite/English/DressCodeWebForm.aspx?TopMenu=Academic&amp;SubMenu=Dress Code">Dress Code</a></li>
+                            <li><a href="/PublicSite/English/LessonPlanAndSyllabusWebForm.aspx?TopMenu=Academic&amp;SubMenu=Lesson Plan">Lesson Plan</a></li>
+                            <li><a href="/PublicSite/English/AcadamicCalendarWebForm.aspx?TopMenu=Academic&amp;SubMenu=Academic Calender">Academic calendar</a></li>
+                            <li><a href="/PublicSite/English/BookListAndSyllabusWebForm.aspx?TopMenu=Academic&amp;SubMenu=Book List &amp; Syllabus">Book List &amp; Syllabus</a></li>
+                            <li><a href="/PublicSite/English/ClassRoutineWebForm.aspx">Class Routine</a></li>
+                            <li><a href="/PublicSite/English/ExamSceduleWebForm.aspx?TopMenu=Academic&amp;SubMenu=Exam Schedule">Exam Schedule</a></li>
+                            <li><a href="/PublicSite/English/ResultWebForm.aspx">Results</a></li>
+                            <li><a href="/PublicSite/English/CoCurricularActivitiesWebForm.aspx?TopMenu=Academic&amp;SubMenu=Co-Curricular activities">Co-curricular Activities</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Admission <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://oas.vnsc.edu.bd/">Apply Now</a></li>
+                            <li><a href="/PublicSite/English/AdmissionResultWebForm.aspx">Admission Test Result</a></li>
+                            <li><a href="/PublicSite/English/FastFactsAdmissionWebForm.aspx?TopMenu=Admission&amp;SubMenu=Fast Facts">Fast Facts</a></li>
+
+                            <li><a href="/PublicSite/English/FeesAndPaymentsWebForm.aspx?TopMenu=Admission&amp;SubMenu=Fees and Payment">Fees &amp; Payment</a></li>
+                            <li><a href="/PublicSite/English/ScholarshipsWebForm.aspx?TopMenu=Admission&amp;SubMenu=Scholarships">Scholarships</a></li>
+                            <li><a href="/PublicSite/English/TransferProceduresWebForm.aspx?TopMenu=Admission&amp;SubMenu=Transfer Procedures">Transfer Procedures</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Information <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/PublicSite/English/NewsWebForm.aspx">News</a></li>
+                            <li><a href="/PublicSite/English/NoticeWebForm.aspx">Notice</a></li>
+                            <li><a href="/PublicSite/English/ShowEventsWebForm.aspx">Events</a></li>
+                            <li><a href="/PublicSite/English/ListofHolidaysWebForm.aspx?TopMenu=Information&amp;SubMenu=List of Holidays">List of Holidays</a></li>
+
+                            <li><a href="/PublicSite/English/PoliciesAndGuidelinesWebForm.aspx?TopMenu=Information&amp;SubMenu=Policies &amp; Guidelines">Policies &amp; Guidelines</a></li>
+                            <li><a href="/PublicSite/English/FacilitiesWebForm.aspx?TopMenu=Information&amp;SubMenu=Facilities">Facilities</a></li>
+                            <li><a href="/PublicSite/English/LibraryWebForm.aspx?TopMenu=Information&amp;SubMenu=Library">Library</a></li>
+                            <li><a href="/PublicSite/English/PublicationsWebForm.aspx?TopMenu=Information&amp;SubMenu=Publications">Publications</a></li>
+                            <li><a href="/PublicSite/English/HealthEnviAwarnessInfoWebForm.aspx?TopMenu=Information&amp;SubMenu=Health and Environmental Awarness Info">Health and Environmental Awarness Info</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" role="button" aria-haspopup="true" aria-expanded="false">On Campus<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/PublicSite/English/PhotoGalleryWebForm.aspx">Photo Gallery</a></li>
+                            <li><a href="/PublicSite/English/VideoGalleryWebForm.aspx">Video Gallary</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" role="button" aria-haspopup="true" aria-expanded="false">Employment<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/PublicSite/English/AtaGlanceWebForm.aspx?TopMenu=Employment&amp;SubMenu=At a Glance">At a Glance</a></li>
+                            <li><a href="/PublicSite/English/EmploymentCirculerWebForm.aspx?TopMenu=Employment&amp;SubMenu=Employment Circulars">Employment Circulars</a></li>
+                            <li><a href="/PublicSite/English/RecruitmentExamResultWebForm.aspx">Recruitment Exam Results</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" role="button" aria-haspopup="true" aria-expanded="false">Archieve<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/PublicSite/English/FormerInstituteHeadsWebForm.aspx?TopMenu=Archives&amp;SubMenu=Former Institute Heads">Former Institute Heads</a></li>
+                            <li><a href="/PublicSite/English/OurMeritoriousStudentsWebForm.aspx?TopMenu=Archives&amp;SubMenu=Our Meritorious Students">Our Meritorious Students </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Salahuddin Ahmed High School</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

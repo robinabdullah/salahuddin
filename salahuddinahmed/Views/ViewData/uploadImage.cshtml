@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "uploadImage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>uploadImage</h2>
+<input id="fileUpload" name="fileUpload" type="file" class="form-control" />
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $('#fileUpload').on("change", function () {
+        if ($('#fileUpload').val() == '' || $('#fileUpload').val() == null) {
+            return false;
+        }
+        $.ajax({
+            url: '/ViewData/IsImageExists',
+            type: "GET",
+            dataType: "JSON",
+            data: { id: '2000' },
+            success: function (data) {
+                if (data == true) {
+                    if (confirm('File already exists. Do you want to replace?')) {
+                        uploadPdf();
+                    }
+                }
+                else {
+                    uploadPdf();
+                }
+            },
+            error: function () {
+                alert('failed');
+            }
+        });
+    })
+
+    function uploadPdf() {
+        
+        var formData = new FormData();
+        var pdfFile = $('#fileUpload').prop('files')[0];
+        formData.append('PDF', pdfFile);
+        formData.append('id', 2000);
+
+
+        $.ajax({
+            url: '/ViewData/uploadImage',
+            type: "POST",
+            contentType: false, // Not to set any content header  
+            processData: false, // Not to process data  
+            data: formData,
+            success: function (result) {
+                alert('uploaded');
+                $('#fileUpload').val('');
+                
+            },
+            error: function (result) {
+                return result;
+            }
+        });
+    }
+
+</script>
