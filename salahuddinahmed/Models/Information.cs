@@ -14,6 +14,12 @@ namespace salahuddinahmed.Models
     
     public partial class Information
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Information()
+        {
+            this.Attendance_Record = new HashSet<Attendance_Record>();
+        }
+    
         public int Id { get; set; }
         public string Class { get; set; }
         public string Name { get; set; }
@@ -41,5 +47,12 @@ namespace salahuddinahmed.Models
         public Nullable<bool> Blood_Group_Checked { get; set; }
         public Nullable<bool> Is_Paid { get; set; }
         public Nullable<bool> Is_Deleted { get; set; }
+        public Nullable<bool> Is_Verified { get; set; }
+        public string Present_Status { get; set; }
+        public string Remarks { get; set; }
+        public string Card_Number { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attendance_Record> Attendance_Record { get; set; }
     }
 }

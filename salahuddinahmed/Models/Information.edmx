@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Infomation.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Infomation.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Attendance_Record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Information_Id" Type="int" Nullable="false" />
+          <Property Name="Attendance_Timing" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Notified" Type="bit" />
+          <Property Name="Created_On" Type="datetime" StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="Information">
           <Key>
             <PropertyRef Name="Id" />
@@ -36,12 +47,32 @@
           <Property Name="Blood_Group_Checked" Type="bit" />
           <Property Name="Is_Paid" Type="bit" />
           <Property Name="Is_Deleted" Type="bit" />
+          <Property Name="Is_Verified" Type="bit" />
+          <Property Name="Present_Status" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="Card_Number" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Attendance_Record_Information">
+          <End Role="Information" Type="Self.Information" Multiplicity="1" />
+          <End Role="Attendance_Record" Type="Self.Attendance_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Information">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Attendance_Record">
+              <PropertyRef Name="Information_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="InfomationStoreContainer">
+          <EntitySet Name="Attendance_Record" EntityType="Self.Attendance_Record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Attendance_Record_Information" Association="Self.FK_Attendance_Record_Information">
+            <End Role="Information" EntitySet="Information" />
+            <End Role="Attendance_Record" EntitySet="Attendance_Record" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Infomation" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -76,10 +107,44 @@
           <Property Name="Blood_Group_Checked" Type="Boolean" />
           <Property Name="Is_Paid" Type="Boolean" />
           <Property Name="Is_Deleted" Type="Boolean" />
+          <Property Name="Is_Verified" Type="Boolean" />
+          <Property Name="Present_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Card_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Attendance_Record" Relationship="Infomation.FK_Attendance_Record_Information" FromRole="Information" ToRole="Attendance_Record" />
         </EntityType>
         <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Information" EntityType="Self.Information" />
+          <EntitySet Name="Attendance_Record" EntityType="Infomation.Attendance_Record" />
+          <AssociationSet Name="FK_Attendance_Record_Information" Association="Infomation.FK_Attendance_Record_Information">
+            <End Role="Information" EntitySet="Information" />
+            <End Role="Attendance_Record" EntitySet="Attendance_Record" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Attendance_Record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Information_Id" Type="Int32" Nullable="false" />
+          <Property Name="Attendance_Timing" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Notified" Type="Boolean" />
+          <Property Name="Created_On" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Information" Relationship="Infomation.FK_Attendance_Record_Information" FromRole="Attendance_Record" ToRole="Information" />
+        </EntityType>
+        <Association Name="FK_Attendance_Record_Information">
+          <End Type="Infomation.Information" Role="Information" Multiplicity="1" />
+          <End Type="Infomation.Attendance_Record" Role="Attendance_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Information">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Attendance_Record">
+              <PropertyRef Name="Information_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -89,6 +154,10 @@
           <EntitySetMapping Name="Information">
             <EntityTypeMapping TypeName="Infomation.Information">
               <MappingFragment StoreEntitySet="Information">
+                <ScalarProperty Name="Card_Number" ColumnName="Card_Number" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Present_Status" ColumnName="Present_Status" />
+                <ScalarProperty Name="Is_Verified" ColumnName="Is_Verified" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -116,6 +185,18 @@
                 <ScalarProperty Name="Blood_Group_Checked" ColumnName="Blood_Group_Checked" />
                 <ScalarProperty Name="Is_Paid" ColumnName="Is_Paid" />
                 <ScalarProperty Name="Is_Deleted" ColumnName="Is_Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendance_Record">
+            <EntityTypeMapping TypeName="Infomation.Attendance_Record">
+              <MappingFragment StoreEntitySet="Attendance_Record">
+                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+                <ScalarProperty Name="Notified" ColumnName="Notified" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Attendance_Timing" ColumnName="Attendance_Timing" />
+                <ScalarProperty Name="Information_Id" ColumnName="Information_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

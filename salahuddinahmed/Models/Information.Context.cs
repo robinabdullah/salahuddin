@@ -26,5 +26,6 @@ namespace salahuddinahmed.Models
         }
     
         public virtual DbSet<Information> Information { get; set; }
+        public virtual DbSet<Attendance_Record> Attendance_Record { get; set; }
     }
 }

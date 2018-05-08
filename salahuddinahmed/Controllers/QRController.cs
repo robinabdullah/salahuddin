@@ -16,7 +16,7 @@ namespace salahuddinahmed.Controllers
             var year = DateTime.Now.Year;
             var regNo = "4586/09";
 
-            var concat = string.Format("{0}, {1}<br> {2} Approved", month, year, regNo);
+            var concat = string.Format("{0}-{1}<br> Reg No: {2} <br>Approved", month, year, regNo);
 
             if (id == "321987456214")
                 return Content("<h2 style='text-align:center;color:green; margin-top:20%'>" + concat +" </h2>");

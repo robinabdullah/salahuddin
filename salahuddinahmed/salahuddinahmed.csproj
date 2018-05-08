@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FetchDeviceRecordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QRController.cs" />
@@ -180,6 +181,10 @@
     </Compile>
     <Compile Include="HelperClasses\ParameterEnctyption.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AttendanceDataConfig.cs" />
+    <Compile Include="Models\Attendance_Record.cs">
+      <DependentUpon>Information.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Information.Context.cs">
       <AutoGen>True</AutoGen>
@@ -202,6 +207,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Zkem_Att_module\Enums\ClearFlag.cs" />
+    <Compile Include="Zkem_Att_module\Info\DeviceTimeInfo.cs" />
+    <Compile Include="Zkem_Att_module\Info\MachineInfo.cs" />
+    <Compile Include="Zkem_Att_module\Info\UserIDInfo.cs" />
+    <Compile Include="Zkem_Att_module\Info\UserInfo.cs" />
+    <Compile Include="Zkem_Att_module\Utilities\DeviceManipulator.cs" />
+    <Compile Include="Zkem_Att_module\Utilities\ZkemClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -288,9 +300,12 @@
     <Content Include="Views\ViewData\Show.cshtml" />
     <Content Include="Views\ViewData\uploadImage.cshtml" />
     <Content Include="Views\QR\CNG.cshtml" />
+    <Content Include="Views\FetchDeviceRecord\Index.cshtml" />
+    <Content Include="Views\FetchDeviceRecord\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Zkem_Att_module\dlls\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -302,6 +317,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="zkemkeeper">
+      <Guid>{FE9DED34-E159-408E-8490-B720A5E632C7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
